@@ -1,13 +1,25 @@
 import cors from 'cors'
 import express from 'express'
+import {connectDB} from './DB.js'
+
+import dotenv from 'dotenv'
+
+dotenv.config()
 
 const puertoDeConexion = 4000
-
-
 const server = express()
+const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@emplear.fz5wmzc.mongodb.net/`
+
 
 server.use(cors({credentials: true })) 
 server.use(express.json())
+
+try {
+    await connectDB(uri)
+} catch (error) {
+    console.log(error)
+}
+
 
 
 server.listen(puertoDeConexion , () => {
