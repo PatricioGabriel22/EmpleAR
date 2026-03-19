@@ -1,0 +1,10 @@
+{
+  "type": "module",
+  "scripts": {
+    "server": "node --watch src/server.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.6",
+    "express": "^5.2.1"
+  }
+}
