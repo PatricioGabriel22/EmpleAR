@@ -1,7 +1,8 @@
 import { BsSun, BsMoon } from 'react-icons/bs'
 
-export const Header = ({ isDark, toggleTheme }) => {
+export const Header = ({ isDark, toggleTheme, onPublish }) => {
     return (
+        
         <header className="flex items-center justify-between py-7 border-b border-zinc-200 dark:border-zinc-800 mb-8">
             <div>
                 <h1 className="font-display text-3xl font-extrabold tracking-tight text-zinc-900 dark:text-zinc-100 hover:cursor-pointer">
@@ -20,7 +21,7 @@ export const Header = ({ isDark, toggleTheme }) => {
                 >
                     {isDark ? <BsMoon size={15} /> : <BsSun size={15} />}
                 </button>
-                <button className="font-display text-sm font-bold px-5 py-2.5 bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-900 rounded-lg hover:opacity-80 transition-opacity hover:cursor-pointer">
+                <button onClick={onPublish} className="font-display text-sm font-bold px-5 py-2.5 bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-900 rounded-lg hover:opacity-80 transition-opacity hover:cursor-pointer">
                     + Publicar trabajo
                 </button>
             </div>

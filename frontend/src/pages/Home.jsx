@@ -4,14 +4,17 @@ import { LocalidadSearch } from '../components/LocalidadSearch'
 import { Filters } from '../components/Filters'
 import { JobCard } from '../components/JobCard'
 import { useJobs } from '../hooks/useJobs'
+import { useState } from 'react'
+import { PublishModal } from '../components/PublishModal'
 
 export const Home = ({ isDark, toggleTheme }) => {
-    const { filtered, loading, error, search, setSearch, filter, setFilter,  } = useJobs()
+    const { filtered, loading, error, search, setSearch, filter, setFilter, refetch } = useJobs()
     //aagrewgar localidad, setLocalidad, sugerencias al useJobs
 
+     const [showModal, setShowModal] = useState(false)
     return (
         <div className="max-w-6xl mx-auto px-6 pb-12">
-            <Header isDark={isDark} toggleTheme={toggleTheme} />
+            <Header isDark={isDark} toggleTheme={toggleTheme} onPublish={() => setShowModal(true)}/>
 
             <div className="grid grid-cols-2 gap-3 mb-4 max-sm:grid-cols-1">
                 <SearchBar value={search} onChange={setSearch} />
@@ -37,6 +40,13 @@ export const Home = ({ isDark, toggleTheme }) => {
                     </p>
                 )}
             </div>
+
+            {showModal && (
+                <PublishModal
+                    onClose={() => setShowModal(false)}
+                    onSuccess={refetch}
+                />
+            )}
         </div>
     )
 }

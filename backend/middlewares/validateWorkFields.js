@@ -1,5 +1,5 @@
 export const validateWorkFields = (req, res, next) => {
-    const { name, jobType, jobDescription, phone, mail, urgente } = req.body
+    const { name, jobType, jobDescription, phone, mail, urgente, localidad } = req.body
 
     const mailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 

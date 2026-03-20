@@ -22,13 +22,14 @@ export const getAllWorks = async (req,res) => {
 
 
 export const addWork = async (req,res) => {
-    const {name, jobType, jobDescription, phone, mail,urgente} = req.body
-
+    const {name, jobType, jobDescription, phone, mail,urgente,localidad} = req.body
+    console.log(req.body)
 
     try {
 
         new workSchema({
             name, 
+            localidad,
             jobType, 
             jobDescription, 
             phone, 

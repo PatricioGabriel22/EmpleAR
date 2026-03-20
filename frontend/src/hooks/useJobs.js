@@ -9,21 +9,19 @@ export const useJobs = () => {
     const [search, setSearch] = useState('')
     const [filter, setFilter] = useState('all')
 
-    useEffect(() => {
-        const fetchJobs = async () => {
-            try {
-                const { data } = await getJobs()
-                console.log(data)
-                setJobs(data)
-                setFiltered(data)
-            } catch (err) {
-                setError(err.message)
-            } finally {
-                setLoading(false)
-            }
+    const fetchJobs = async () => {
+        try {
+            const { data } = await getJobs()
+            console.log(data)
+            setJobs(data)
+            setFiltered(data)
+        } catch (err) {
+            setError(err.message)
+        } finally {
+            setLoading(false)
         }
-        fetchJobs()
-    }, [])
+    }
+    useEffect(() => {fetchJobs()}, [])
 
     useEffect(() => {
         let result = jobs
@@ -42,6 +40,7 @@ export const useJobs = () => {
 
         setFiltered(result)
     }, [search, filter, jobs])
+    
 
-    return { jobs, filtered, loading, error, search, setSearch, filter, setFilter }
+    return { jobs, filtered, loading, error, search, setSearch, filter, setFilter, refetch:fetchJobs }
 }

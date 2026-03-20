@@ -1,15 +1,4 @@
-const FILTERS = [
-    { label: 'Todos', value: 'all' },
-    { label: 'Urgente', value: 'urgente' },
-    { label: 'Electricista', value: 'Electricista' },
-    { label: 'Plomero', value: 'Plomero' },
-    { label: 'Carpintero', value: 'Carpintero' },
-    { label: 'Pintor', value: 'Pintor' },
-    { label: 'Gasista', value: 'Gasista' },
-    { label: 'Fotografo', value: 'Fotografo' },
-    { label: 'Atencion cliente', value: 'Atencion cliente' },
-
-]
+import {FILTERS} from '../services/filters.js'
 
 export const Filters = ({ active, onChange }) => {
     return (
