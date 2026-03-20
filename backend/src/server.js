@@ -17,7 +17,7 @@ const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@emp
 server.use(cors({credentials: true })) 
 server.use(express.json())
 
-server.use(workRoutes)
+server.use('/', workRoutes)
 
 try {
     await connectDB(uri)

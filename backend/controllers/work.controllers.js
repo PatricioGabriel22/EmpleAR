@@ -6,10 +6,14 @@ import {enviarCodigoConfirmacion} from '../services/mail.js'
 export const getAllWorks = async (req,res) => {
     
 
-
     try {
+        const allWorks = await workSchema.find()
 
-        console.log("Obtener los trabajos disponibles")
+        if (!allWorks.length) {
+            return res.status(404).json({ message: 'No hay trabajos disponibles' })
+        }
+
+        res.json(allWorks)
 
     } catch (error) {
         console.log(error)

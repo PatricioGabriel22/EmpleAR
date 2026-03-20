@@ -5,6 +5,7 @@ const workSchema = new mongoose.Schema({
     jobType:String, 
     jobDescription:String, 
     phone:Number, 
+    localidad:{ type: String, required: true },
     mail: { type: String, required: true },
     codigoConfirmacion: { type: String, default: null },
     codigoExpira: { type: Date, default: null },

@@ -7,6 +7,10 @@ export const validateWorkFields = (req, res, next) => {
         return res.status(400).json({ error: 'El mail no es válido' })
     }
 
+    if (!localidad || typeof localidad !== 'string') {
+        return res.status(400).json({ error: 'La localidad es obligatoria' })
+    }
+
     if (!name || !jobType || !jobDescription || !phone || !mail) {
         return res.status(400).json({ error: 'Todos los campos son obligatorios' })
     }
