@@ -44,6 +44,7 @@ export const useJobs = () => {
         try {
             console.log(infoJob)
             await addJobApi(infoJob)
+            fetchJobs()
             
         } catch (err) {
             console.log(err)
