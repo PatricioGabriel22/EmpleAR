@@ -1,12 +1,11 @@
 import { useState } from 'react'
 import { BsX, BsPerson, BsGeoAlt, BsBriefcase, BsTextParagraph, BsTelephone, BsEnvelope } from 'react-icons/bs'
-import axios from 'axios'
 
 import {FILTERS} from '../services/filters.js'
 
 const INITIAL = { name: '', localidad: '', jobType: '', jobDescription: '', phone: '', mail: '', urgente: false }
 
-export const PublishModal = ({ onClose, onSuccess }) => {
+export const PublishModal = ({ onClose, onSuccess, onAddJob }) => {
     const [form, setForm] = useState(INITIAL)
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState(null)
@@ -20,8 +19,7 @@ export const PublishModal = ({ onClose, onSuccess }) => {
         setLoading(true)
         setError(null)
         try {
-            console.log(form)
-            await axios.post('http://localhost:4000/addWork', form)
+            onAddJob(form)
             onSuccess()
             onClose()
         } catch (err) {

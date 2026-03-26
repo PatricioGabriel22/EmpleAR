@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { getJobs, deleteJob as deleteJobApi,solicitarCodigoDelete } from '../services/api.js'
+import { getJobs, deleteJob as deleteJobApi,solicitarCodigoDelete,addJob as addJobApi } from '../services/api.js'
 
 export const useJobs = () => {
     const [jobs, setJobs] = useState([])
@@ -12,7 +12,6 @@ export const useJobs = () => {
     const fetchJobs = async () => {
         try {
             const { data } = await getJobs()
-            console.log(data)
             setJobs(data)
             setFiltered(data)
         } catch (err) {
@@ -41,6 +40,16 @@ export const useJobs = () => {
         }
     }
 
+    const addJob = async (infoJob) => {
+        try {
+            console.log(infoJob)
+            await addJobApi(infoJob)
+            
+        } catch (err) {
+            console.log(err)
+        }
+    }
+
 
     useEffect(() => {fetchJobs()}, [])
 
@@ -63,5 +72,5 @@ export const useJobs = () => {
     }, [search, filter, jobs])
     
 
-    return { jobs, filtered, loading, error, search, setSearch, filter, setFilter, refetch:fetchJobs,deleteJob, solicitarCodigo }
+    return { jobs, filtered, loading, error, search, setSearch, filter, setFilter, refetch:fetchJobs,deleteJob, solicitarCodigo,addJob }
 }

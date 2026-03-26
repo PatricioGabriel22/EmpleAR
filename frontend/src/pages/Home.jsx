@@ -8,7 +8,7 @@ import { useState } from 'react'
 import { PublishModal } from '../components/PublishModal'
 
 export const Home = ({ isDark, toggleTheme }) => {
-    const { filtered, loading, error, search, setSearch, filter, setFilter, refetch,deleteJob, solicitarCodigo } = useJobs()
+    const { filtered, loading, error, search, setSearch, filter, setFilter, refetch,deleteJob, solicitarCodigo, addJob } = useJobs()
     //aagrewgar localidad, setLocalidad, sugerencias al useJobs
 
     const [showModal, setShowModal] = useState(false)
@@ -45,6 +45,7 @@ export const Home = ({ isDark, toggleTheme }) => {
                 <PublishModal
                     onClose={() => setShowModal(false)}
                     onSuccess={refetch}
+                    onAddJob={addJob}
                 />
             )}
 

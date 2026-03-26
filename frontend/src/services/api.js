@@ -4,9 +4,13 @@ const api = axios.create({
     baseURL: 'https://emplear-api.onrender.com' 
 })
 // http://localhost:4000
+// https://emplear-api.onrender.com
+
 export const getJobs = () => api.get('/allWorks')
 
 export const searchJobs = (query) => api.get(`/allWorks?search=${query}`)
+
+export const addJob = (info) => api.post(`/addWork`, info)
 
 export const solicitarCodigoDelete = (id,mail) => api.post(`/solicitar-codigo/${id}`, {mail} )
 
