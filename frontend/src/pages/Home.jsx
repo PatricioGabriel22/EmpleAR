@@ -8,10 +8,10 @@ import { useState } from 'react'
 import { PublishModal } from '../components/PublishModal'
 
 export const Home = ({ isDark, toggleTheme }) => {
-    const { filtered, loading, error, search, setSearch, filter, setFilter, refetch } = useJobs()
+    const { filtered, loading, error, search, setSearch, filter, setFilter, refetch,deleteJob, solicitarCodigo } = useJobs()
     //aagrewgar localidad, setLocalidad, sugerencias al useJobs
 
-     const [showModal, setShowModal] = useState(false)
+    const [showModal, setShowModal] = useState(false)
     return (
         <div className="max-w-6xl mx-auto px-6 pb-12">
             <Header isDark={isDark} toggleTheme={toggleTheme} onPublish={() => setShowModal(true)}/>
@@ -32,7 +32,7 @@ export const Home = ({ isDark, toggleTheme }) => {
 
             <div className="grid grid-cols-3 gap-4 max-md:grid-cols-2 max-sm:grid-cols-1">
                 {filtered.map(job => (
-                    <JobCard key={job._id} job={job} />
+                    <JobCard key={job._id} job={job} onGetCodigoDelete={solicitarCodigo} onDelete={deleteJob} />
                 ))}
                 {!loading && filtered.length === 0 && (
                     <p className="col-span-full text-center py-16 text-zinc-400 text-sm">
@@ -47,6 +47,9 @@ export const Home = ({ isDark, toggleTheme }) => {
                     onSuccess={refetch}
                 />
             )}
+
+
+
         </div>
     )
 }

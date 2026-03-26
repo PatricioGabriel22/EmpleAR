@@ -1,6 +1,14 @@
+import { useState } from 'react'
 import { BsTelephone, BsEnvelope, BsGeoAlt, BsBriefcase } from 'react-icons/bs'
+import { FaWhatsapp } from "react-icons/fa"
+import { MdDeleteForever } from "react-icons/md"
+import { DeleteModal } from '../components/DeleteModal'
 
-export const JobCard = ({ job }) => {
+
+
+export const JobCard = ({ job,onGetCodigoDelete, onDelete }) => {
+    const [deleteTarget, setDeleteTarget] = useState(null)
+
     return (
         <div className={`bg-white dark:bg-zinc-900 border rounded-2xl p-6 flex flex-col gap-4 hover:-translate-y-0.5 transition-all cursor-pointer relative overflow-hidden
             ${job.urgente
@@ -27,32 +35,49 @@ export const JobCard = ({ job }) => {
 
             <div className="flex flex-wrap gap-1.5">
                 <span className="inline-flex items-center gap-1.5 text-xs font-medium text-sky-500 bg-sky-50 dark:bg-sky-950 px-2.5 py-1 rounded-md">
-                    <BsBriefcase size={11} />
+                    <BsBriefcase size={15} />
                     {job.jobType}
                 </span>
-                <span className="inline-flex items-center gap-1.5 text-xs text-zinc-400 bg-zinc-100 dark:bg-zinc-800 px-2.5 py-1 rounded-md">
+                <span className="inline-flex items-center gap-1.5 text-xs text-black dark:text-white bg-zinc-100 dark:bg-zinc-800 px-2.5 py-1 rounded-md">
                     <BsGeoAlt size={11} />
                     {job.localidad}
                 </span>
             </div>
 
-            <p className="text-sm text-zinc-500 dark:text-zinc-400 leading-relaxed font-light line-clamp-3">
+            <p className="text-sm text-zinc-500 dark:text-white leading-relaxed font-light line-clamp-3">
                 {job.jobDescription}
             </p>
 
             <div className="border-t border-zinc-100 dark:border-zinc-800 pt-3 flex flex-col gap-2">
-                <div className="flex items-center gap-2 text-sm text-zinc-400">
-                    <BsTelephone size={13} className="shrink-0" />
-                    <a href={`tel:${job.phone}`} className="hover:text-sky-400 transition-colors truncate">
+                <div className="flex items-center gap-2 text-sm text-black dark:text-white">
+                    <FaWhatsapp size={30} color='green' className="shrink-0" />
+                    <a className="hover:text-sky-400 transition-colors truncate">
                         {job.phone}
                     </a>
                 </div>
-                <div className="flex items-center gap-2 text-sm text-zinc-400">
-                    <BsEnvelope size={13} className="shrink-0" />
-                    <a href={`mailto:${job.mail}`} className="hover:text-sky-400 transition-colors truncate">
+                <div className="flex items-center gap-2 text-sm text-black dark:text-white">
+                    <BsEnvelope size={20} className="shrink-0" />
+                    <a  className="hover:text-sky-400 transition-colors truncate">
                         {job.mail}
                     </a>
                 </div>
+
+                <div className="flex self-end  text-sm text-black dark:text-white" onClick={() =>setDeleteTarget(!deleteTarget)}>
+                    <MdDeleteForever size={20} color='red' className="shrink-0" />
+                    Eliminar
+                </div>
+                
+                
+            {deleteTarget && (
+                <DeleteModal
+                    job={job}
+                    onClose={() => setDeleteTarget(null)}
+                    onRequestCode={onGetCodigoDelete}
+                    onConfirmDelete={onDelete}
+                />
+            )}
+
+
             </div>
         </div>
     )

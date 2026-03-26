@@ -48,7 +48,7 @@ export const codigoEditDelete = async (req, res) => {
     const workID = req.params.id
     const {mail} = req.body
 
-    console.log(mail)
+  
     try {
         const publicacion = await workSchema.findById(workID)
         if (!publicacion) return res.status(404).json({ error: 'Publicación no encontrada' })
@@ -77,6 +77,7 @@ export const codigoEditDelete = async (req, res) => {
 export const deleteWork = async (req,res) => {
     const workID = req.params.id
     const {codigo} = req.body
+  
 
     try {
         const target = await workSchema.findById({_id:workID})

@@ -5,4 +5,9 @@ const api = axios.create({
 })
 
 export const getJobs = () => api.get('/allWorks')
+
 export const searchJobs = (query) => api.get(`/allWorks?search=${query}`)
+
+export const solicitarCodigoDelete = (id,mail) => api.post(`/solicitar-codigo/${id}`, {mail} )
+
+export const deleteJob = (id,codigo) => api.delete(`/deleteWork/${id}`, {data:{codigo}} )

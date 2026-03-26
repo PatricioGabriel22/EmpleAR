@@ -10,7 +10,7 @@ export const Header = ({ isDark, toggleTheme, onPublish }) => {
                 </h1>
                 <div className="flex h-2 w-full mt-1 rounded-full overflow-hidden">
                     <div className="flex-2 bg-sky-400" />
-                    <div className="flex-2 bg-zinc-300" />
+                    <div className="flex-2 bg-white" />
                     <div className="flex-2 bg-sky-400" />
                 </div>
             </div>
