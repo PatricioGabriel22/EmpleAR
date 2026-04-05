@@ -16,6 +16,27 @@ export const PublishModal = ({ onClose, onSuccess, onAddJob }) => {
     }
 
     const handleSubmit = async () => {
+        setError(null)
+
+        const { name, localidad, jobType, jobDescription, phone, mail } = form
+
+        if (!name || !localidad || !jobType || !jobDescription || !phone || !mail) {
+            return setError('Completá todos los campos antes de publicar')
+        }
+
+        const mailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+        if (!mailRegex.test(mail)) {
+            return setError('El mail no es válido')
+        }
+
+        if (isNaN(phone)) {
+            return setError('El teléfono debe ser un número')
+        }
+
+    
+
+
+
         setLoading(true)
         setError(null)
         try {
@@ -55,7 +76,7 @@ export const PublishModal = ({ onClose, onSuccess, onAddJob }) => {
                 <div className="px-6 py-5 flex flex-col gap-4 max-h-[70vh] overflow-y-auto">
 
                     <Field icon={<BsPerson size={14} />} label="Nombre">
-                        <input name="name" value={form.name} onChange={handleChange} placeholder="Tu nombre completo" className={inputClass} />
+                        <input required name="name" value={form.name} onChange={handleChange} placeholder="Tu nombre completo" className={inputClass} />
                     </Field>
 
                     <Field icon={<BsGeoAlt size={14} />} label="Localidad">
